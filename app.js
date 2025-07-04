@@ -34,7 +34,7 @@ const authRoutes = require('./modules/api/routes/route');
 app.use('/api', authRoutes)
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Hello ges')
 });
 
 // io.on('connection', (socket) => {
