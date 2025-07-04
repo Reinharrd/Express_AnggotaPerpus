@@ -19,10 +19,10 @@
 const knex = require('knex')({
     client: 'mysql2',
     connection: {
-        host: '10.1.28.107',
-        user: 'edo',
+        host: 'localhost',
+        user: 'root',
         password: '',
-        database: 'erlangga_e-library'
+        database: 'erlangga_readnest'
     }
 })
 knex.raw('SELECT 1')
