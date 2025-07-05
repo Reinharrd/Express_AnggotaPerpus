@@ -76,3 +76,47 @@ exports.tambahKategori = async (req, res) => {
         });
     }
 }
+
+exports.editKategori = async (req, res) => {
+    const {nama_kategori } = req.body;
+    const { id } = req.params;
+    try {
+        if (!id) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'ID kategori tidak ditemukan.'
+            });
+        }
+        if (!nama_kategori) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'ID kategori dan nama kategori tidak boleh kosong.'
+            })
+        }
+        const editKategori = await knex('erl_inv_kategori')
+            .where('inv_kategori_idx', id)
+            .update({
+                inv_kategori_nama: nama_kategori
+            })
+
+        if (!editKategori) {
+            return res.status(404).json({
+                satuts: 'error',
+                message: 'Gagal merubah kategori.'
+            });
+        }
+        return res.status(200).json({
+            status: 'success',
+            message: 'Kategori berhasil diubah.',
+            data: {
+                nama_kategori : nama_kategori,
+            }
+        })
+    } catch (error) {
+        console.error('Error editing category:', error);
+        return res.status(500).json({
+            status: 'error',
+            message: 'Terjadi kesalahan saat mengedit kategori.'
+        });
+    }
+}
