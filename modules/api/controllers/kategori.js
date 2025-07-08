@@ -1,4 +1,4 @@
-const { QueryBuilder } = require('knex');
+// const { QueryBuilder } = require('knex');
 const { knex } = require('../../../config/db');
 const crypto = require('crypto');
 const ENCRYPTION_KEY = '3rl4ngg454l4m50l1dv1ct0ry1234567';
