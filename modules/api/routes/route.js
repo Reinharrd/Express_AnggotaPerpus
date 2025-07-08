@@ -15,5 +15,6 @@ router.post('/peminjaman', koleksiBukuController.TransaksiPeminjaman);
 router.get('/kategori', kategoriController.getDataKategori);
 router.post('/kategori/tambah', kategoriController.tambahKategori);
 router.put('/kategori/update/:id', kategoriController.editKategori);
+router.delete('/kategori/delete/:id', kategoriController.deleteKategori);
 
 module.exports = router;
