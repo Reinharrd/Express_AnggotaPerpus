@@ -118,14 +118,15 @@ exports.editKategori = async (req, res) => {
                 message: 'ID kategori tidak ditemukan.'
             });
         }
-        if (!nama_kategori) {
+        const decodedID = Buffer.from(id, 'base64').toString('utf-8');
+        if (!nama_kategori || !decodedID) {
             return res.status(400).json({
                 status: 'error',
                 message: 'ID kategori dan nama kategori tidak boleh kosong.'
-            })
+            });
         }
         const editKategori = await knex('erl_inv_kategori')
-            .where('inv_kategori_idx', id)
+            .where('inv_kategori_idx', decodedID)
             .update({
                 inv_kategori_nama: nama_kategori
             })
