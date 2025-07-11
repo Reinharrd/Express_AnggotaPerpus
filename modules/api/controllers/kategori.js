@@ -162,8 +162,15 @@ exports.deleteKategori = async (req, res) => {
                 message: 'ID kategori tidak ditemukan.'
             });
         }
+        const decodedID = Buffer.from(id, 'base64').toString('utf-8');
+        if (!decodedID) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'ID kategori tidak valid.'
+            });
+        }
         const deleteKategori = await knex('erl_inv_kategori')
-            .where('inv_kategori_idx', id)
+            .where('inv_kategori_idx', decodedID)
             .delete();
         
         if (!deleteKategori) {
